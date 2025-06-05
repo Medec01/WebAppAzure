@@ -1,0 +1,94 @@
+﻿@page
+@model IndexModel
+@{
+ViewData["Title"] = "Compteurs";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>@ViewData["Title"]</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+padding: 40px;
+background-color: #f0f0f0;
+}
+.compteur {
+background-color: #ffffff;
+border: 1px solid #ccc;
+border-radius: 10px;
+display: inline-block;
+margin: 20px;
+padding: 20px;
+width: 250px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.valeur {
+font-size: 48px;
+margin: 20px 0;
+color: #333;
+}
+.boutons {
+display: flex;
+justify-content: center;
+gap: 10px;
+}
+.boutons button {
+padding: 10px 15px;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+.boutons button:hover {
+background-color: #ddd;
+}
+</style>
+</head>
+<body>
+
+<h1>Interface à Deux Compteurs</h1>
+
+<div class="compteur" id="compteur-elements">
+<h2>Éléments</h2>
+<div class="valeur" id="valeur-elements">0</div>
+<div class="boutons">
+<button onclick="modifierCompteur('elements', -1)">-</button>
+<button onclick="modifierCompteur('elements', 1)">+</button>
+<button onclick="reinitialiserCompteur('elements')">Réinitialiser</button>
+</div>
+</div>
+
+<div class="compteur" id="compteur-structure">
+<h2>Structure</h2>
+<div class="valeur" id="valeur-structure">0</div>
+<div class="boutons">
+<button onclick="modifierCompteur('structure', -1)">-</button>
+<button onclick="modifierCompteur('structure', 1)">+</button>
+<button onclick="reinitialiserCompteur('structure')">Réinitialiser</button>
+</div>
+</div>
+
+<script>
+const compteurs = {
+elements: 0,
+structure: 0
+};
+
+function modifierCompteur(nom, valeur) {
+compteurs[nom] += valeur;
+document.getElementById('valeur-' + nom).textContent = compteurs[nom];
+}
+
+function reinitialiserCompteur(nom) {
+compteurs[nom] = 0;
+document.getElementById('valeur-' + nom).textContent = compteurs[nom];
+}
+</script>
+
+</body>
+</html>
